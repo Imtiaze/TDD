@@ -18,4 +18,9 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_books_collectio()
+    {
+        $this->get('/books')->assertStatus(200);
+    }
 }
