@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
     use HasFactory;
+    use HasUuid;
+
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
 
     public function department()
     {

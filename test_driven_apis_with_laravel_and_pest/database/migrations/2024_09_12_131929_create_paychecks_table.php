@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('paychecks', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->bigInteger('employee');
             $table->integer('net_amount');
             $table->timestamp('payed_at');

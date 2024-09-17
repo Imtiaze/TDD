@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('timelogs', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->bigInteger('employee_id');
             $table->timestamp('started_at');
             $table->timestamp('stopped_at');
