@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('department/store', [DepartmentController::class, 'store'])->name('department.store');
+Route::post('department/store', [DepartmentController::class, 'store'])->name('departments.store');

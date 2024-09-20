@@ -1,18 +1,16 @@
 <?php
 
+use function Pest\Laravel\postJson;
+
 it('should create a department', function() {
     $department = postJson(route('departments.store'), [
-        'name' => 'Department',
+        'name' => 'asdfasdf',
         'description' => 'Awesome developers accross the board',
     ])->json('data');
 
-
     expect($department)
-        ->attribute->name->toBe('Department')
-        ->attribute->description->toBe('Awesome developers accross the board');
-
+        ->attributes->name->toBe('asdfasdf')
+        ->attributes->description->toBe('Awesome developers accross the board');
+    
 });
 
-it('validate a department', function() {
-    $this->assertTrue(true);
-});
