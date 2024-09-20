@@ -21,6 +21,6 @@ class DepartmentController extends Controller
         $departmentData = new DepartmentData(...$request->validated());
         $department = $this->createDepartment->execute($departmentData);
 
-        return DepartmentResource::make($department)->response()->status(Response::HTTP_CREATED);
+        return DepartmentResource::make($department)->response();
     }
 }
