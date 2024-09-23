@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Actions\CreateDepartmentAction;
 use App\Actions\UpdateDepartmentAction;
+use App\Actions\UpsertDepartmentAction;
 use App\DataTransferObjects\DepartmentData;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
+use App\Http\Requests\UpsertDepartmentRequest;
 use App\Http\Resources\DepartmentResource;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -17,23 +19,23 @@ class DepartmentController extends Controller
 {
 
     public function __construct(
-        private readonly CreateDepartmentAction $createDepartment,
-        private readonly UpdateDepartmentAction $updateDepartment
+        private readonly upsertDepartmentAction $upsertDepartment,
     ) {}
 
-    public function store(StoreDepartmentRequest $request)
+    public function store(UpsertDepartmentRequest $request)
     {
-        $departmentData = new DepartmentData(...$request->validated());
-        $department = $this->createDepartment->execute($departmentData);
-
-        return DepartmentResource::make($department)->response();
+        return DepartmentResource::make($this->upsert(new Department, $request))->response();
     }
 
-    public function update(UpdateDepartmentRequest $request, Department $department): Response
+    public function update(UpsertDepartmentRequest $request, Department $department): Response
     {
-        $departmentData = new DepartmentData($request->name, $request->description);
-        $department = $this->updateDepartment->execute($department, $departmentData);
-        // dd(response()->noContent());
+        $this->upsert($department, $request);
         return response()->noContent();
+    }
+
+    private function upsert(Department $department, UpsertDepartmentRequest $request)
+    {
+        $departmentData = new DepartmentData(...$request->validated());
+        return $this->upsertDepartment->execute($department, $departmentData);
     }
 }
