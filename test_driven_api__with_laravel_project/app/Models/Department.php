@@ -13,10 +13,10 @@ class Department extends Model
 
     protected $fillable = ['name', 'description'];
 
-    // public function getRouteKeyName(): string
-    // {
-    //     return 'uuid';
-    // }
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
 
     public function employees()
     {
