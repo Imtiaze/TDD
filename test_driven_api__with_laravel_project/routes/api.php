@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('departments', [DepartmentController::class, 'index'])->name('departments.index');
+Route::get('departments/{department}', [DepartmentController::class, 'show'])->name('departments.show');
 Route::post('departments', [DepartmentController::class, 'store'])->name('departments.store');
 Route::put('departments/{department}', [DepartmentController::class, 'update'])->name('departments.update');

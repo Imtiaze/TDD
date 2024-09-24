@@ -22,6 +22,16 @@ class DepartmentController extends Controller
         private readonly upsertDepartmentAction $upsertDepartment,
     ) {}
 
+    public function index()
+    {
+        return DepartmentResource::collection(Department::all());
+    }
+
+    public function show(Department $department): DepartmentResource
+    {
+        return DepartmentResource::make($department);
+    }
+
     public function store(UpsertDepartmentRequest $request)
     {
         return DepartmentResource::make($this->upsert(new Department, $request))->response();
