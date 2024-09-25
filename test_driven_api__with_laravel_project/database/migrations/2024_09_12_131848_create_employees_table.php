@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('email')->unique();
             $table->bigInteger('department_id');
-            $table->string('salary_type')->comment('salary or hourly_rate');
+            $table->string('job_title');
+            $table->string('payment_type')->comment('salary or hourly_rate');
             $table->integer('salary')->comment('only if salary type is salary');
             $table->integer('hourly_rate')->comment('only if salary type is hourly_rate');
             $table->timestamps();
